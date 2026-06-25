@@ -1,19 +1,14 @@
-import numpy as np
-from numpy.typing import NDArray
-
-
 class Solution:
-    
-    def sigmoid(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
-        # z is a 1D NumPy array
-        # Formula: 1 / (1 + e^(-z))
+    def get_minimizer(self, iterations: int, learning_rate: float, init: int) -> float:
+        # Objective function: f(x) = x^2
+        # Derivative:         f'(x) = 2x
+        # Update rule:        x = x - learning_rate * f'(x)
+        # Round final answer to 5 decimal places
+        rounds=iterations
+        while rounds:
+            init=init-learning_rate*(2*init)
+            rounds-=1
         
-        ans = 1 / (1 + np.exp(-z))
-        return np.round(ans, 5)
-
-
-    def relu(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
-        # z is a 1D NumPy array
-        # Formula: max(0, z) element-wise
-        ans=np.maximum(0, z)
-        return np.round(ans,5)
+        return round(init,5)
+       
+        
